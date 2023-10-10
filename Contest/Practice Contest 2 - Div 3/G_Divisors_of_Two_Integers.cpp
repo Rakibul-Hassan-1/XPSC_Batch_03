@@ -25,45 +25,42 @@
 
 using namespace std;
 
-int a[5] = {600, 60, 0, 10, 1};
-int good[16] = {0, 70, 140, 210, 280, 350, 601, 671, 741, 811, 881, 951, 1202, 1272, 1342, 1412};
-
 void solve()
 {
-    string s;
-    cin >> s;
-    int x;
-    cin >> x;
-    int tot = 0;
-    for (int i = 0; i < 5; i++)
-    {
-        tot += (int)(s[i] - '0') * a[i];
-    }
-    set<int> t;
-    for (int i = 0; i < 2022; i++)
-    {
-        t.insert(tot);
-        tot += x;
-        tot %= 1440;
-    }
-    int res = 0;
-    for (int i : t)
-    {
-        for (int j = 0; j < 16; j++)
-        {
-            if (good[j] == i)
-            {
-                res++;
-            }
-        }
-    }
-    cout << res << '\n';
 }
 int main()
 {
     fasterIO();
-    TestCase()
-        solve();
+    // int t;
+    // cin >> t;
+    // while (t--)
+    // {
+    //     solve();
+    // }
+
+    ll n;
+    cin >> n;
+    vector<ll> v(n);
+    for (int i = 0; i < n; i++)
+        cin >> v[i];
+
+    ll k = 0;
+
+    sort(v.rbegin(), v.rend());
+
+    // for (auto x : v)
+    //     cout << x << " ";
+    // cout << endl;
+
+    for (int i = 1; i < n; i++)
+    {
+        if (v[i - 1] == v[i] || v[0] % v[i] != 0)
+        {
+            k = v[i];
+            break;
+        }
+    }
+    cout << v[0] << " " << k << endl;
 
     return 0;
 }

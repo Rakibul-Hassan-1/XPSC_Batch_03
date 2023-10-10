@@ -25,45 +25,46 @@
 
 using namespace std;
 
-int a[5] = {600, 60, 0, 10, 1};
-int good[16] = {0, 70, 140, 210, 280, 350, 601, 671, 741, 811, 881, 951, 1202, 1272, 1342, 1412};
-
-void solve()
+bool compare(string &s1, string &s2)
 {
-    string s;
-    cin >> s;
-    int x;
-    cin >> x;
-    int tot = 0;
-    for (int i = 0; i < 5; i++)
-    {
-        tot += (int)(s[i] - '0') * a[i];
-    }
-    set<int> t;
-    for (int i = 0; i < 2022; i++)
-    {
-        t.insert(tot);
-        tot += x;
-        tot %= 1440;
-    }
-    int res = 0;
-    for (int i : t)
-    {
-        for (int j = 0; j < 16; j++)
-        {
-            if (good[j] == i)
-            {
-                res++;
-            }
-        }
-    }
-    cout << res << '\n';
+    return s1.size() < s2.size();
 }
+
 int main()
 {
     fasterIO();
-    TestCase()
-        solve();
+    ll n;
+    ll flag;
+    cin >> n;
+    string s[n];
+    for (int i = 0; i < n; i++)
+        cin >> s[i];
+
+    // using custom compare function
+    sort(s, s + n, compare);
+
+    for (int i = 0; i < n - 1; i++)
+    {
+        bool isfound = s[i + 1].find(s[i]) != string::npos;
+
+        if (isfound)
+            flag = 1;
+
+        else
+        {
+            flag = 0;
+            break;
+        }
+    }
+
+    if (flag)
+    {
+        cout << "YES" << endl;
+        for (int i = 0; i < n; i++)
+            cout << s[i] << endl;
+    }
+    else
+        cout << "NO" << endl;
 
     return 0;
 }
