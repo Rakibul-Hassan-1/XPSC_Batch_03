@@ -22,43 +22,56 @@
     ios_base ::sync_with_stdio(0); \
     cin.tie(0);                    \
     cout.tie(0)
-
 using namespace std;
 
-int a[5] = {600, 60, 0, 10, 1};
-int good[16] = {0, 70, 140, 210, 280, 350, 601, 671, 741, 811, 881, 951, 1202, 1272, 1342, 1412};
+bool isPalindrome(string s)
+{
+    string t = s;
+    reverse(t.begin(), t.end());
+    return t == s;
+}
 
 void solve()
 {
-    string s;
+    string s, a, b;
     cin >> s;
     int x;
     cin >> x;
-    int tot = 0;
-    for (int i = 0; i < 5; i++)
+    a.push_back(s[0]);
+    a.push_back(s[1]);
+    b.push_back(s[3]);
+    b.push_back(s[4]);
+    int hours = stoi(a), minutes = stoi(b), currHours = stoi(a), currMinutes = stoi(b), addHours = x / 60, addMinutes = x % 60, ans = 0;
+
+    currHours += addHours;
+    currMinutes += addMinutes;
+    currHours %= 24;
+    currHours += (currMinutes / 60);
+    currHours %= 24;
+    currMinutes %= 60;
+
+    while (1)
     {
-        tot += (int)(s[i] - '0') * a[i];
+        string x = (currHours <= 9 ? "0" : "") + to_string(currHours), y = (currMinutes <= 9 ? "0" : "") + to_string(currMinutes);
+
+        string T = x + y;
+        bool ok = isPalindrome(T);
+
+        if (ok)
+            ans++;
+            
+        currHours += addHours;
+        currMinutes += addMinutes;
+        currHours %= 24;
+        currHours += (currMinutes / 60);
+        currHours %= 24;
+        currMinutes %= 60;
+        if (a == x && b == y)
+            break;
     }
-    set<int> t;
-    for (int i = 0; i < 2022; i++)
-    {
-        t.insert(tot);
-        tot += x;
-        tot %= 1440;
-    }
-    int res = 0;
-    for (int i : t)
-    {
-        for (int j = 0; j < 16; j++)
-        {
-            if (good[j] == i)
-            {
-                res++;
-            }
-        }
-    }
-    cout << res << '\n';
+    cout << ans << endl;
 }
+
 int main()
 {
     fasterIO();

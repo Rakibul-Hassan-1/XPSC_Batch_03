@@ -24,25 +24,43 @@
     cout.tie(0)
 
 using namespace std;
+
+void solve()
+{
+    int a[3], b[3];
+
+    for (int i = 0; i < 3; i++)
+        cin >> a[i];
+    for (int i = 0; i < 3; i++)
+        cin >> b[i];
+
+    sort(a, a + 3, greater<int>());
+    sort(b, b + 3, greater<int>());
+
+    int aliceScore = a[0] * 100 + a[1] * 10 + a[2];
+    int bobScore = b[0] * 100 + b[1] * 10 + b[2];
+
+    if (aliceScore > bobScore)
+    {
+        cout << "Alice" << endl;
+    }
+    else if (aliceScore < bobScore)
+    {
+        cout << "Bob" << endl;
+    }
+    else
+    {
+        cout << "Tie" << endl;
+    }
+}
 int main()
 {
     fasterIO();
-    int n;
-    cin >> n;
-    vector<int> a(n);
-    for (int i = 0; i < n; i++)
-        cin >> a[i];
-
-    int ans = 0;
-    for (int i = 1; i < n - 1; i++)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        if (a[i] == 0 && a[i - 1] == 1 && a[i + 1] == 1)
-        {
-            ans++;
-            a[i + 1] = 0;
-        }
+        solve();
     }
-    cout << ans << endl;
-
     return 0;
 }

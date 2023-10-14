@@ -24,25 +24,25 @@
     cout.tie(0)
 
 using namespace std;
+
+void solve()
+{
+    int a, b;
+    cin >> a >> b;
+    int res = a / b;
+    if (res >= 20)
+        cout << 20 << "\n";
+    else
+        cout << res << "\n";
+}
 int main()
 {
     fasterIO();
-    int n;
-    cin >> n;
-    vector<int> a(n);
-    for (int i = 0; i < n; i++)
-        cin >> a[i];
-
-    int ans = 0;
-    for (int i = 1; i < n - 1; i++)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        if (a[i] == 0 && a[i - 1] == 1 && a[i + 1] == 1)
-        {
-            ans++;
-            a[i + 1] = 0;
-        }
+        solve();
     }
-    cout << ans << endl;
-
     return 0;
 }
