@@ -22,21 +22,27 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
-    vector<int> v(n);
-    int sum = 0;
+    int n;
+    cin >> n;
+    vector<ll> v(n);
+    for (int i = 0; i < n; i++)
+        cin >> v[i];
+
+    priority_queue<ll> pq;
+    ll ans = 0;
     for (int i = 0; i < n; i++)
     {
-        cin >> v[i];
-        sum += v[i];
+        if (v[i] == 0)
+        {
+            if (pq.empty())
+                continue;
+            ans += pq.top();
+            pq.pop();
+        }
+        else
+            pq.push(v[i]);
     }
-    if (sum < n)
-        cout << "NO" << endl;
-    else if (sum % n == 0 || k >= 1)
-        cout << "YES" << endl;
-    else
-        cout << "NO" << endl;
+    cout << ans << endl;
 }
 int main()
 {
