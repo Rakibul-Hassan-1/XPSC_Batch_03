@@ -15,42 +15,33 @@
     cout.tie(0)
 using namespace std;
 
-int main()
+void solve()
 {
-    fasterIO();
-
     int n;
+    bool flag = true;
     cin >> n;
-    int a[n];
+    vector<int> a(n);
+    string s;
     for (int i = 0; i < n; i++)
         cin >> a[i];
 
-    bool flag = false;
+    cin >> s;
 
-    for (int i = 0; i < (1 << n); i++)
-    {
-        int sum = 0;
-
-        for (int j = 0; j < n; j++)
-        {
-            int mask = 1 << j;
-            if ((i & mask) == 0)
-                sum -= a[j];
-            else
-                sum += a[j];
-        }
-
-        if (sum == 0 || sum % 360 == 0)
-        {
-            flag = true;
-            break;
-        }
-    }
+    for (int i = 0; i < n; i++)
+        for (int j = i + 1; j < n; j++)
+            if (a[i] == a[j] && s[i] != s[j])
+                flag = false;
 
     if (flag)
         cout << "YES" << endl;
     else
         cout << "NO" << endl;
+}
+int main()
+{
+    fasterIO();
+    TestCase()
+        solve();
 
     return 0;
 }
