@@ -20,7 +20,7 @@ int main()
 
     cin >> n >> s;
     ll l = 0, r = n + 1, ans = n + 1;
-    
+
     while (l <= r)
     {
         ll m = l + (r - l) / 2;
