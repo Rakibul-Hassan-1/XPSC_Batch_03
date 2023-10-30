@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+#define ll long long int
+#define vi vector<int>
+#define pb push_back
+#define ff first
+#define yes cout << "YES" << endl
+#define no cout << "NO" << endl
+#define ss second
+#define endl '\n'
+#define TestCase() \
+    int tc;        \
+    cin >> tc;     \
+    while (tc--)
+#define fasterIO()                 \
+    ios_base ::sync_with_stdio(0); \
+    cin.tie(0);                    \
+    cout.tie(0)
+using namespace std;
+
+void solve()
+{
+    int a, b, c;
+    cin >> a >> b >> c;
+    int d1 = a - 1;
+    int d2 = abs(b - c) + c - 1;
+    
+    int ans = 0;
+    if (d1 <= d2)
+        ans += 1;
+
+    if (d1 >= d2)
+        ans += 2;
+
+    cout << ans << endl;
+}
+int main()
+{
+    fasterIO();
+    TestCase()
+        solve();
+
+    return 0;
+}
