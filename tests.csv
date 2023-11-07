@@ -1,0 +1,8 @@
+TestCase,Input,ExpectedOutput
+1,5,"Lower Double"
+1,12,"Lower Single"
+1,20,"Upper Double"
+1,30,"Upper Single"
+3,"1;15;26","Lower Double;Lower Single;Upper Single"
+2,"10;16","Lower Double;Upper Double"
+4,"2;11;17;27","Lower Double;Lower Single;Upper Double;Upper Single"
