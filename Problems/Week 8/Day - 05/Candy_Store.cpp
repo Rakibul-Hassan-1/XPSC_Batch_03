@@ -19,13 +19,15 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    for (int i = n; i >= 1; i--)
+    int a, b;
+    cin >> a >> b;
+    if (a >= b)
+        cout << b << endl;
+    else
     {
-        cout << i << " ";
+        int c = b - a;
+        cout << a + (c * 2) << endl;
     }
-    cout << endl;
 }
 int main()
 {

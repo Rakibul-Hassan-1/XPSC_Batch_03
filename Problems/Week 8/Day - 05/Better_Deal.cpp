@@ -19,13 +19,16 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    for (int i = n; i >= 1; i--)
-    {
-        cout << i << " ";
-    }
-    cout << endl;
+    int a, b;
+    cin >> a >> b;
+    int p = 100 - a;
+    int q = 200 - (b * 2);
+    if (q > p)
+        cout << "FIRST" << endl;
+    else if (q < p)
+        cout << "SECOND" << endl;
+    else
+        cout << "BOTH" << endl;
 }
 int main()
 {

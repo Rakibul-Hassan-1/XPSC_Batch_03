@@ -19,13 +19,24 @@ using namespace std;
 
 void solve()
 {
-    int n;
+    ll n;
     cin >> n;
-    for (int i = n; i >= 1; i--)
+    string s;
+    cin >> s;
+    ll count = 0;
+    for (int i = 0; i < n; i++)
     {
-        cout << i << " ";
+        if (s[i] == '1')
+            count++;
     }
-    cout << endl;
+    int ans = min(count, n - count);
+
+    if (ans % 2)
+        cout
+            << "Zlatan\n";
+    else
+        cout << "Ramos\n";
+    return;
 }
 int main()
 {

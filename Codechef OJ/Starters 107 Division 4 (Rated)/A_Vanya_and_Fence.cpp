@@ -11,7 +11,6 @@ int main()
         ans += (x > h);
     }
     cout << ans << endl;
-    return 0;
-
+    
     return 0;
 }
