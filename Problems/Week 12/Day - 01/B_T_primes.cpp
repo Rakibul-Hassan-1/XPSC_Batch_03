@@ -4,8 +4,8 @@
 #define no cout << "NO" << endl
 #define endl '\n'
 #define TestCase() \
-    int tc;        \
-    cin >> tc;     \
+    int tc = 1;    \
+    // cin >> tc;     \
     while (tc--)
 #define fasterIO()                 \
     ios_base ::sync_with_stdio(0); \
@@ -30,50 +30,47 @@ vector<int> getDivisors(int n)
     return d;
 }
 
-ll inversion(vector<int> &a)
+bool isPrime(ll x)
 {
-    ll zeroes = 0, ans = 0;
-    for (int i = a.size() - 1; i >= 0; i--)
+    ll cnt = 0;
+    for (ll j = 2; j <= sqrt(x); j++)
     {
-        if (a[i] == 0)
-            zeroes++;
-        else
-            ans += zeroes;
+        if (x % j == 0)
+        {
+            cnt++;
+            if (cnt == 1)
+                return false;
+        }
     }
-    return ans;
+    if (cnt == 0)
+        return true;
+    else
+        return false;
 }
+
 void solve()
 {
-    int n;
+    ll n;
     cin >> n;
-    vector<int> a(n);
-    for (int i = 0; i < n; i++)
+    vector<ll> a(n);
+
+    for (ll i = 0; i < n; i++)
         cin >> a[i];
 
-    ll ans = inversion(a);
-    for (int i = 0; i < n; i++)
+    for (ll i = 0; i < n; i++)
     {
-        if (a[i] == 0)
+        ll z = sqrt(a[i]);
+        if (z * z != a[i] || a[i] == 1)
+            cout << "NO" << endl;
+        else
         {
-            a[i] = 1;
-            ans = max(ans, inversion(a));
-            a[i] = 0;
-            break;
+            if (isPrime(z))
+                cout << "YES" << endl;
+            else
+                cout << "NO" << endl;
         }
     }
-    for (int i = n - 1; i >= 0; i--)
-    {
-        if (a[i] == 1)
-        {
-            a[i] = 0;
-            ans = max(ans, inversion(a));
-            a[i] = 1;
-            break;
-        }
-    }
-    cout << ans << endl;
 }
-
 int main()
 {
     fasterIO();

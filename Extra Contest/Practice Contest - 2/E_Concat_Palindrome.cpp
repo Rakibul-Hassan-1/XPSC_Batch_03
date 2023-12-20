@@ -30,50 +30,40 @@ vector<int> getDivisors(int n)
     return d;
 }
 
-ll inversion(vector<int> &a)
-{
-    ll zeroes = 0, ans = 0;
-    for (int i = a.size() - 1; i >= 0; i--)
-    {
-        if (a[i] == 0)
-            zeroes++;
-        else
-            ans += zeroes;
-    }
-    return ans;
-}
 void solve()
 {
-    int n;
-    cin >> n;
-    vector<int> a(n);
-    for (int i = 0; i < n; i++)
-        cin >> a[i];
+    int n = 0, m = 0, ch[26] = {0}, odd = 0;
+    string s1, s2;
+    cin >> n >> m >> s1 >> s2;
+    string a = s1, b = s2;
+    if (n < m)
+        swap(a, b);
 
-    ll ans = inversion(a);
-    for (int i = 0; i < n; i++)
+    for (char &c : a)
+        ch[c - 'a']++;
+    for (char &c : b)
+        ch[c - 'a']--;
+
+    for (auto c : ch)
     {
-        if (a[i] == 0)
+        if (c < 0)
         {
-            a[i] = 1;
-            ans = max(ans, inversion(a));
-            a[i] = 0;
+            yes;
             break;
         }
+        odd += c % 2 != 0;
     }
-    for (int i = n - 1; i >= 0; i--)
+    if (odd <= 1)
     {
-        if (a[i] == 1)
-        {
-            a[i] = 0;
-            ans = max(ans, inversion(a));
-            a[i] = 1;
-            break;
-        }
+        yes;
+        return;
     }
-    cout << ans << endl;
+    else
+    {
+        no;
+        return;
+    }
 }
-
 int main()
 {
     fasterIO();
