@@ -1,10 +1,6 @@
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
-using namespace __gnu_pbds;
-template <typename T>
-using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
-
 #define ll long long
 #define yes cout << "YES" << endl
 #define no cout << "NO" << endl
@@ -14,6 +10,9 @@ using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statisti
     cin.tie(0);                    \
     cout.tie(0)
 using namespace std;
+using namespace __gnu_pbds;
+template <typename T>
+using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 vector<int> getDivisors(int n)
 {
@@ -34,6 +33,29 @@ vector<int> getDivisors(int n)
 
 void solve()
 {
+    int n, k;
+    cin >> n >> k;
+
+    vector<int> v(n);
+    for (int i = 0; i < n; i++)
+        cin >> v[i];
+    int mnWaste = INT_MAX;
+    bool canDistribute = false;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (v[i] >= k)
+        {
+            canDistribute = true;
+            int waste = v[i] % k;
+            mnWaste = min(mnWaste, waste);
+        }
+    }
+
+    if (canDistribute)
+        cout << mnWaste << endl;
+    else
+        cout << -1 << endl;
 }
 int main()
 {
